@@ -23,26 +23,24 @@ return new class extends Migration
             $table->unsignedTinyInteger('roomCount');
             $table->double('square', unsigned:true);
             $table->tinyInteger('bathroomCount');
-            $table->enum('type', ['apartment', 'house']);
+            $table->enum('type', ['apartment', 'house', 'commercial']);
             $table->set('status', ['готов', 'требуется ремонт']);
             $table->boolean('legalClear');
-            $table->foreignIdFor(Region::class, 'region_id')->nullable();
-            $table->foreignIdFor(District::class, 'district_id')->nullable();
-            $table->foreignIdFor(Street::class, 'street_id')->nullable();
+            $table->foreignId('region_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('district_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('street_id')->nullable()->constrained()->onDelete('set null');
             $table->string('houseNumber', 15);
             $table->tinyInteger('floorNumber')->nullable();
             $table->unsignedTinyInteger('entrance')->nullable();
             $table->unsignedInteger('flatNumber')->nullable();
-            $table->foreignIdFor(Photo::class, 'photo_id')->nullable();
-            $table->foreignIdFor(Builder::class, 'seller_id');
+            $table->foreignId('photo_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('seller_id')->constrained('users')->onDelete('cascade');
             $table->unsignedTinyInteger('bedroomCount');
             $table->decimal('price', 12, 2, unsigned:true);
             $table->boolean('sold');
             $table->boolean('finishing')->nullable();
             $table->enum('finishingType', ["чистовая", "под ключ", "white box"])->nullable();
             
-
-
             $table->timestamps();
         });
     }

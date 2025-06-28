@@ -1,13 +1,15 @@
 <?php
-
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Builder extends Model
 {
-    use HasFactory;
+    protected $fillable = ['inn', 'ogrn', 'status', 'review_id'];
+    protected $casts = ['status' => 'string'];
 
-    
+    public function dialogs()
+    {
+        return $this->hasMany(Dialog::class);
+    }
 }

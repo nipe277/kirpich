@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Stead extends Model
 {
-    use HasFactory;
+    protected $fillable = ['appointment', 'square', 'facilities', 'distanceToCity', 'price', 'sold'];
+    protected $casts = ['appointment' => 'string', 'facilities' => 'array', 'sold' => 'boolean'];
 }

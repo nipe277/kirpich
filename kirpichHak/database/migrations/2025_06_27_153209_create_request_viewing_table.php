@@ -2,6 +2,7 @@
 
 use App\Models\Realty;
 use App\Models\Request_viewing_status;
+use App\Models\RequestViewingStatus;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -18,7 +19,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Realty::class, 'realty_id');
             $table->foreignIdFor(User::class, 'user_id');
-            $table->foreignIdFor(Request_viewing_status::class, 'request_viewing_status_id');
+            $table->foreignIdFor(RequestViewingStatus::class, 'request_viewing_status_id');
 
             $table->timestamps();
         });
